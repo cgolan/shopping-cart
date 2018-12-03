@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<table>
+    <thead>
+    <tr>
+        <th><label>Product</label></th>
+        <th><label>Price (cents)</label></th>
+        <th><label>Quantity</label></th>
+        <th><label>SubTotal</label></th>
+    </tr>
+    </thead>
+    <tbody>
+    <div th:if="not ${receipt.getProductsMap().isEmpty()}">
+        <tr th:each="entry: ${receipt.getProductsMap()}">
+            <div th:if="${entry?.value}">
+                <td th:text="${entry.key}"/>
+                <td th:text="${entry.value.price}"/>
+                <td th:text="${entry.value.quantity}"/>
+                <td th:text="${entry.value.price} * ${entry.value.quantity}"/>
+            </div>
+        </tr>
+    </div>
+    </tbody>
+</table>
+
+<p>
+    <b><span>Total amount in $ --->  </span></b>
+    <b><span th:text="${receipt.getTotal()}"></span></b>
+</p>
+
+<p>
+<div>
+    <a href="home.html" th:href="@{/home}">Back to Home Page</a>
+</div>
+</p>
+</body>
+</html>
+

@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div class="container">
+    <h1 th:if="${errorMessage}" th:utext="${errorMessage}"></h1>
+    <a href="home.html" th:href="@{/home}">Back to Home Page</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Welcome to Shopping Cart</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src='js/jquery.min.js'></script>
+    <script src="js/incrementing.js"></script>
+</head>
+
+<body>
+<table>
+    <thead>
+    <tr>
+        <th><label>Product</label></th>
+        <th><label>Price (cents)</label></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td><label th:text="${product.getName()}"></label></td>
+        <td><label th:text="${product.getPrice()}"></label></td>
+    </tr>
+    </tbody>
+</table>
+<br><span>NB! Papayas are 50 ct. each but are available as 'three for the price of two'.</span></br>
+
+<div id="page-wrap">
+    <form action="/checkout" method="post">
+        <div class="numbers-row">
+            <label>Apples</label>
+            <input type="text" name="apples" value="0"/>
+        </div>
+        <div class="numbers-row">
+            <label>Oranges</label>
+            <input type="text" name="oranges" value="0"/>
+        </div>
+        <div class="numbers-row">
+            <label>Bananas</label>
+            <input type="text" name="bananas" value="0"/>
+        </div>
+        <div class="numbers-row">
+            <label>Papayas</label>
+            <input type="text" name="papayas" value="0"/>
+        </div>
+        <div class="buttons">
+            <input type="submit" value="Get Price" id="submit"/>
+        </div>
+    </form>
+</div>
+
+</body>
+
+</html>

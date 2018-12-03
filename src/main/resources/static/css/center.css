@@ -1,0 +1,9 @@
+body {
+    background: slategrey;
+    color: white;
+    font: 14px Helvetica, sans-serif;
+}
+
+div.a {
+    text-align: center;
+}
