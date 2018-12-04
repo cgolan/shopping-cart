@@ -1,4 +1,4 @@
-package com.shopingcart;
+package com.shoppingcart;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

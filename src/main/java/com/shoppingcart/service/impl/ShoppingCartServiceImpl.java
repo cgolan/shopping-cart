@@ -7,10 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -25,11 +22,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     private Map<String, Product> computeMap(HttpServletRequest request) {
-        Map<String, Product> productsMap = new HashMap<>();
-        String apples = request.getParameter("apples");
-        String oranges = request.getParameter("oranges");
-        String bananas = request.getParameter("bananas");
-        String papayas = request.getParameter("papayas");
+        Map<String, Product> productsMap = new TreeMap<>();
+        String apples = request.getParameter("Apple");
+        String oranges = request.getParameter("Orange");
+        String bananas = request.getParameter("Banana");
+        String papayas = request.getParameter("Papaya");
         populateMap(productsMap, apples, oranges, bananas, papayas);
         return productsMap;
     }
@@ -46,7 +43,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
 
         if (bananas != null && Long.parseLong(bananas) > 0) {
-            Product product = new Product("Bananas", 15, Long.parseLong(bananas));
+            Product product = new Product("Banana", 15, Long.parseLong(bananas));
             productsMap.put(product.getName(), product);
         }
         if (papayas != null && Long.parseLong(papayas) > 0) {
@@ -68,10 +65,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                             long quotient = value.getQuantity() / 3 * 2 * value.getPrice();
                             long remainder = value.getQuantity() % 3 * value.getPrice();
                             papayasAmount = quotient + remainder;
+                            value.setSubTotal(papayasAmount);
                             price.add(papayasAmount);
                         }
-                    } else
+                    } else {
+                        value.setSubTotal(value.getQuantity() * value.getPrice());
                         price.add(value.getQuantity() * value.getPrice());
+                    }
                 }
         );
         long totalAmount = price.stream().mapToLong(Long::longValue).sum();

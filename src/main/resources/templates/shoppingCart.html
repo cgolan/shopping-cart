@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8"/>
@@ -27,22 +27,22 @@
 <br><span>NB! Papayas are 50 ct. each but are available as 'three for the price of two'.</span></br>
 
 <div id="page-wrap">
-    <form action="/checkout" method="post">
+    <form action="#" th:action="@{/checkout}"  method="post">
         <div class="numbers-row">
             <label>Apples</label>
-            <input type="text" name="apples" value="0"/>
+            <input type="text" name="Apple" value="0"/>
         </div>
         <div class="numbers-row">
             <label>Oranges</label>
-            <input type="text" name="oranges" value="0"/>
+            <input type="text" name="Orange" value="0"/>
         </div>
         <div class="numbers-row">
             <label>Bananas</label>
-            <input type="text" name="bananas" value="0"/>
+            <input type="text" name="Banana" value="0"/>
         </div>
         <div class="numbers-row">
             <label>Papayas</label>
-            <input type="text" name="papayas" value="0"/>
+            <input type="text" name="Papaya" value="0"/>
         </div>
         <div class="buttons">
             <input type="submit" value="Get Price" id="submit"/>

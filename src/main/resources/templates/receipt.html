@@ -1,40 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
 
 <body>
-<table>
-    <thead>
-    <tr>
-        <th><label>Product</label></th>
-        <th><label>Price (cents)</label></th>
-        <th><label>Quantity</label></th>
-        <th><label>SubTotal</label></th>
-    </tr>
-    </thead>
-    <tbody>
-    <div th:if="not ${receipt.getProductsMap().isEmpty()}">
-        <tr th:each="entry: ${receipt.getProductsMap()}">
-            <div th:if="${entry?.value}">
-                <td th:text="${entry.key}"/>
-                <td th:text="${entry.value.price}"/>
-                <td th:text="${entry.value.quantity}"/>
-                <td th:text="${entry.value.price} * ${entry.value.quantity}"/>
-            </div>
+<div id="page-wrap">
+    <table>
+        <thead>
+        <tr>
+            <th><label>Product</label></th>
+            <th><label>Price (cents)</label></th>
+            <th><label>Quantity</label></th>
+            <th><label>SubTotal</label></th>
         </tr>
+        </thead>
+        <tbody>
+        <div th:if="not ${receipt.getProductsMap().isEmpty()}">
+            <tr th:each="entry: ${receipt.getProductsMap()}">
+                <div th:if="${entry?.value}">
+                    <td><label th:text="${entry.key}"></label></td>
+                    <td><label th:text="${entry.value.price}"></label></td>
+                    <td><label th:text="${entry.value.quantity}"></label></td>
+                    <td><label th:text="${entry.value.subTotal}"></label></td>
+                </div>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+    <p>
+        <br>
+        <b><label>Total amount ($)</label></b>
+        <b><label th:text="${receipt.getTotal()}"></label></b>
+        <br>
+    <div>
+        <br><br><br><br>
+        <label>
+            <a href="home.html" style="color: aliceblue" th:href="@{/home}">Home Page</a>
+        </label>
     </div>
-    </tbody>
-</table>
-
-<p>
-    <b><span>Total amount in $ --->  </span></b>
-    <b><span th:text="${receipt.getTotal()}"></span></b>
-</p>
-
-<p>
-<div>
-    <a href="home.html" th:href="@{/home}">Back to Home Page</a>
+    </p>
 </div>
-</p>
+
 </body>
 </html>
 

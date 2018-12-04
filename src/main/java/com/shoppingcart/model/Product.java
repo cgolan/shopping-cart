@@ -6,6 +6,7 @@ public class Product {
     private String name;
     private long price;
     private long quantity;
+    private long subTotal;
 
     public Product() {
     }
@@ -43,6 +44,14 @@ public class Product {
 
     public void setQuantity(long quantity) {
         this.quantity = quantity;
+    }
+
+    public long getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(long subTotal) {
+        this.subTotal = subTotal;
     }
 
     @Override
